@@ -95,7 +95,7 @@
 
 <h2>Mertcan Temel</h2>
 
-<p> Formal Verification Engineer, M.S., PhD Student </p>
+<p> Formal Verification Engineer, PhD </p>
 
 
 </header>
