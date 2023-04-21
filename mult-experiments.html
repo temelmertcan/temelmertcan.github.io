@@ -1,50 +1,180 @@
-
-
-<html>
-
-  <title>Artifact for Automated and Scalable Verification of Integer
-    Multipliers by M. Temel, A. Slobodova and W. Hunt
+<!doctype html> <html> 
+<title>Mertcan Temel
     </title>
 
- <meta http-equiv = "refresh" content = "0; url = http://mtemel.com/mult-experiments.php" />
+<style>
+
+ header {
+  padding: 15px 10px 15px 40px;
+  text-align: left;
+  background: #4CAF50;
+  color: white;
+ font-size: 20px;
+ border-bottom: 3px solid #333;
+ }
+
+  .content {
+  padding: 20px 20px 20px 20px;
+  text-align: left;
+  background: #fafafa;
+  color: black;
+ font-size: 15px;
+ border-left: 8px solid #4CAF50;
+ border-right: 8px solid #4CAF50;
+ border-top: 8px solid #4CAF50;
+ border-bottom: 8px solid #4CAF50;
+ }
+
+  nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  }
+
+  nav li {
+  float: left;
+  }
+
+  nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+  nav li a:hover:not(.active) {
+  background-color: #111;
+}
+
+  nav .active {
+  background-color: #4CAF50;
+  }
+
+  body {
+  
+  background-color: #f0f0f0;
+
+ }
+
+  code {
+  width: auto;
+  min-width: 500px;
+  text-align: left;
+  background-color: #F1F1F1;
+  display: block;
+  border: 1px solid gray;
+  margin: 0px 30px 3px 10px;
+  padding: 3px 10px 3px 10px;
+  }
+
+ .code2, code2 {
+  width: auto;
+  min-width: 500px;
+  text-align: left;
+  margin: 0px 30px 3px 10px;
+  display: block;  
+  background-color: #FaFaFa;
+  border: 1px solid gray;
+  padding: 3px 10px 3px 10px;
+  white-space: pre-wrap;
+  }
+
+
+</style>
+
+
+
+<body>
 
   
-  <style>
-    body {
-	width: 630px;
-	font-family:Menlo;
-	font-size:14px;
-	text-align: justify;
-    }
 
-    code {
-	width: 575px;
-	min-width: 500px;
-	text-align: left;
-	background-color: #F1F1F1;
-	display: inline-block;
-	border: 1px solid gray;
-	margin: 0px 1px 3px 10px;
-	padding: 3px 10px 3px 10px;
-    }
+<header>
 
-    code2 {
-	width: 575px;
-	min-width: 500px;
-	text-align: left;
-	font-size: 12px;
-	display: inline-block;
-	background-color: #FDFDFD;
-	border: 1px solid gray;
-	margin: 0px 1px 3px 10px;
-	padding: 3px 10px 3px 10px;
-    }
-    tab { margin-left: 40px; }
-  </style>
+<h2>Mertcan Temel</h2>
+
+<p> Formal Verification Engineer, M.S., PhD Student </p>
+
+
+</header>
+
+
+<nav>
+
+
+<ul>
+  <li><a id="home" class="" href="index.html">Home</a></li>
+  <li><a id="publications" class="" href="publications.html">Publications</a></li>
+  <li><a id="cv" href="cv.html" class="">CV</a></li>
+  <li><a id="contant" href="contact.html" class="">Contact</a></li>
+</ul>
+
+</nav>
+
+<script>
+function updatenav(id) {
+     document.getElementById(id).className = "active";
+}
+
+function showhide(id)
+{
+ e=  s = document.getElementById(id);
+ s = e.style;
+ v =  s.visibility;
+ if (v == "hidden")
+ {
+  s.visibility = "visible";
+  s.height = "auto";
+  e.className="code2";
+  }
+ else
+ {
+  s.visibility = "hidden";
+  s.height = "0px";
+  e.className ="";
+  }
+ }
+
+</script>
+
+      <div class="content">
+
+<script>
+  updatenav("publications");
+</script>
+
+
   
-  <body>
+  
+<style>
+  
+  .artifact {
+  min-width: 530px;
+  max-width: 800px;
+  font-family:Menlo;
+  font-size:14px;
+  margin : 0 10px 0 0;
+  text-align: justify;
+  }
+  
+ 
+  tab { margin-left: 40px; }
+</style>
+
+  <script>
+    document.getElementsByClassName("content")[0].style.backgroundColor = "white";
+
+    window.document.title = "Mertcan Temel - Artifact for Automated and Scalable Verification of Integer Multipliers";
+    </script>
+
+  <div class="artifact">
+
+    <h3>Artifact for Automated and Scalable Verification of Integer
+    Multipliers by M. Temel, A. Slobodova and W. Hunt
+    </h3>
     
-    <p>README</p>
 
     <p>
       This page serves as a guidance to reproduce the experiment
@@ -65,9 +195,8 @@
       circuits.
     </p>
     
-    <p><b>------------------------------------------------------------------------</b><br>
-    <b>1. REPRODUCING THE RESULTS ---------------------------------------------</b><br><br>
-    <b>1.1 Running the benchmarks for our tool --------------------------------</b></p>
+    <h3>1. REPRODUCING THE RESULTS </h3>
+    <h3>1.1 Running the benchmarks for our tool </h3>
     
     <p>  We  provide  a  zipped  VM image  in  OVA  format  generated  with
       VirtualBox.                     <a                    target="_blank"
@@ -105,13 +234,13 @@
       are located under /root/benchmarks/. Type:</p>
     <code> cd benchmarks </code>
 
-    <p><i>Step 3.</i> ACL2 has a mechanism to save certificates for
-    finished proofs so that the user wouldn't have to run the proofs
-    again. We released this VM image with proofs already run and
-    certificates saved. You may see the timing results from our run in
-    "results.txt" (use "less results.txt" to view the contents of that
-    file). See Section 1.2 to interpret the results. In order to clean
-    those certificates and run the experiments again, type "make
+    <p><i>Step  3.</i>  ACL2  has  a mechanism  to  save  certificates  for
+    finished proofs so  that the user wouldn't have to  run the same proofs
+    again.  We  released  this  VM   image  with  proofs  already  run  and
+    certificates saved.  You may  see the  timing results  from our  run in
+    "results.txt"  (use "less  results.txt" to  view the  contents of  that
+    file). See  Section 1.2  to interpret  the results.  In order  to clean
+    those  certificates   and  run   the  experiments  again,   type  "make
     clean".</p>
     <code> make clean </code>
 
@@ -148,7 +277,7 @@
     
     <p></p>
     
-    <p><b>1.2 Interpreting "result.txt" -----------------------------------------</b></p>
+    <p><h3>1.2 Interpreting "result.txt" </h3></p>
 
     <p>When experiments finished running, the timing results for each
       multiplier correctness proofs are collected and saved in file
@@ -158,11 +287,11 @@
      <p> An example snippet from "result.txt":</p>
 
     <code2>
-      <p>"64x64 - UNSIGNED - SCA SP-DT-BK" <br>
-      Time:  0.50 seconds (prove: 0.47, print: 0.00, other: 0.02)</p>
+"64x64 - UNSIGNED - SCA SP-DT-BK" 
+Time:  0.50 seconds (prove: 0.47, print: 0.00, other: 0.02)
       
-      <p>"128x128 - UNSIGNED - TEM SP-DT-KS"<br>
-      Time:  2.82 seconds (prove: 2.77, print: 0.00, other: 0.05)</p>
+"128x128 - UNSIGNED - TEM SP-DT-KS"
+Time:  2.82 seconds (prove: 2.77, print: 0.00, other: 0.05)
     </code2>
 
     <p>If you ran all the experiments, you will see timing results for
@@ -177,8 +306,7 @@
       be 64x64  through 1024x1024), the  second is signed or  unsigned, the
       third is the  generator name (HOM, TEM,  or SCA) and the  last one is
       the  type of  multiplier  with the  same acronyms  as  listed in  the
-      paper. For convenience, the explanations  of such acronyms are listed
-      as follows. </p>
+      paper. The complete list of such acronyms is given as follows. </p>
 
     <p><i>Partial Product Encoding:</i></p>
     <ul>
@@ -225,7 +353,7 @@
 
    
 
-    <p><b>1.3 Organization of Benchmarks -----------------------------------------</b></p>
+    <p><h3>1.3 Organization of Benchmarks </h3></p>
 
     <p>In this section, we describe how benchmarks are organized and
     how our Makefile runs and collects the results.</p>
@@ -321,7 +449,7 @@
     <!-- follow the events unless you are a very experienced and patient -->
     <!--   ACL2 user.</p> -->
 
-    <p><b>1.4 Viewing the Statement of Actual Theorems  ---------------------------</b></p>
+    <p><h3>1.4 Viewing the Statement of Actual Theorems  </h3></p>
 
     <p>  In this  section, we  describe  how users  may view  the statement  of
       theorems proved for multiplier designs. </p>
@@ -408,7 +536,7 @@ Proofs for this multiplier module with its adder modules finished in -- 0.560 se
     other part this  snippet are fixed components that we  have for all the
       multiplier design proofs. </p>
 
-    <p><b>1.5 Running the Other Tools from Related Work  --------------------------</b></p>
+    <p><h3>1.5 Running the Other Tools from Related Work  </h3></p>
 
     <p> In order to  compare the results on the same  platform, we also set
     up the tools  from related work (D.  Kaufmann et al. and  A. Mahzoon et
@@ -479,11 +607,15 @@ reading ../mult-tests/sca-genmul/verilog-files/64_64_U_SP_WT_LF_GenMul.v
        their corresponding lines.</p>
 
      <p> We have observed that the tool  from D. Kaufmann et al. can have a
-     varying performance  depending on the OS  it is running on.  It can be
-     twice as slow on a MacOS as Debian. </p>
+     varying  performance depending  on the  OS  it is  running on.   After
+     submitting our  paper for final  version, we  realized that It  can be
+     twice as slow  on a OSX as  compared to Debian.  In our  paper, we ran
+     D. Kaufmann et al.  on OSX and  ran A. Mahzoon et al.  on Debian (they
+     only released a Linux executable). If you are going to use this work in
+     your paper(s), please refer to the owners' work. </p>
       
-    <p><b>------------------------------------------------------------------------</b><br>
-      <b>2. USING THE TOOL FOR OTHER MULTIPLIER DESIGNS (NEW INPUT) -------------</b></p>
+    
+     <h3>2. USING THE TOOL FOR OTHER MULTIPLIER DESIGNS (NEW INPUT) </h3>
     
     <p>A demo and instructions to use our tool on new inputs are
       <a target="_blank"
@@ -523,12 +655,14 @@ reading ../mult-tests/sca-genmul/verilog-files/64_64_U_SP_WT_LF_GenMul.v
       files and add your circuit. Please refer to Section 1.3 to
       understand the organization of our benchmarks.</p>
     
-    <p><b>------------------------------------------------------------------------</b><br>
-    <b>3. CONTACT -------------------------------------------------------------</b></p>
+    
+    <h3>3. CONTACT </h3></p>
 
-    <p>For other questions or concerns you may contact Mertcan Temel
-    at mert@utexas.edu</p>
+   <p><a href="contact.html">Visit the "Contacts" Page</a></p>
+</div>
+      
+</div>
 
-</body>
+</body> </html>
 
-</html>
+
