@@ -107,7 +107,7 @@
 <ul>
   <li><a id="home" class="" href="index.php">Home</a></li>
   <li><a id="publications" class="" href="publications.php">Publications</a></li>
-  <li><a id="cv" href="cv.php" class="">CV</a></li>
+  <!-- <li><a id="cv" href="cv.php" class="">CV</a></li> -->
   <li><a id="contant" href="contact.php" class="">Contact</a></li>
 </ul>
 
