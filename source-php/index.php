@@ -18,7 +18,11 @@ I am a Formal Verification Engineer at Intel Corporation.  I specialize in forma
      I got my B.S. in Electrical and Electronics Engineering in June 2016 from Bilkent University, Ankara, Turkey. My undergrad studies focused on digital circuits, signal processing and software engineering. I started a Ph.D. bound M.S. program in University of Texas at Austin in August 2016. My M.S. coursework focused on computer architecture with an emphasis on formal verification. I got my M.S. degree in May 2019. I created an efficient and widely applicable method for verification of multipliers for my Ph.D. thesis.
                </p>
 
-                                                                           
+
+<p>
+<h3> <a href="mult-experiments.html"> Click here for multiplier verification tests </a> </h3> 
+</p>
+
 <?php
 include 'foot.php';
 ?>
