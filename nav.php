@@ -1,0 +1,26 @@
+
+
+<header>
+
+<h2>Mertcan Temel</h2>
+
+<p> Formal Verification Engineer, M.S., PhD Student </p>
+
+
+</header>
+
+
+<nav>
+
+
+<ul>
+  <li><a class="active" href="index.php">Home</a></li>
+  <li><a href="#publications">Publications</a></li>
+  <li><a href="#news">CV</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+
+      <div class="content">
