@@ -221,8 +221,8 @@ As an example, below are the commands to generate an example testbench:
 </code>
 This  will  generate  a  32x32-bit multiplier  with  signed  Booth  radix-4
 encoding with Wallace tree and Kogge-Stone  adder. Name of the output file is
-<code>Merged_WT_SB4_KS_32x32_multgen.sv</code>      with      top      module      name:
-<code>Merged_WT_SB4_KS_32x32</code></p>
+<code>Merged_WT_SB4_KS_32x32_noX_multgen.sv</code>      with      top      module      name:
+<code>Merged_WT_SB4_KS_32x32_noX</code></p>
 
 </li>
 
@@ -254,7 +254,7 @@ with SBCL's later versions (as of April 2023).  </li>
     <code> (in-package "RP") ;; switch package/namespace </code>
   </li>
   <li> Parse the design and create svtv for it:
-    <code> (parse-and-create-svtv :file "Merged_WT_SB4_KS_32x32_multgen.sv" :topmodule "Merged_WT_SB4_KS_32x32") </code>
+    <code> (parse-and-create-svtv :file "Merged_WT_SB4_KS_32x32_noX_multgen.sv" :topmodule "Merged_WT_SB4_KS_32x32_noX") </code>
   </li>
 
   <li> State the correctness conjecture to verify:
@@ -296,7 +296,7 @@ shell when running hundreds or thousands of experiments.
 <p> Below  are  the commands we used  to  parse  combinational Verilog  designs  and
    convert them to AIGs:</p>
 
-<code>yosys Merged_WT_SB4_KS_32x32_multgen.sv -p "hierarchy -top Merged_WT_SB4_KS_32x32" -p proc -p techmap -p flatten -o tmp2.blif</code>
+<code>yosys Merged_WT_SB4_KS_32x32_noX_multgen.sv -p "hierarchy -top Merged_WT_SB4_KS_32x32_noX" -p proc -p techmap -p flatten -o tmp2.blif</code>
 <code>abc </code>
 <code2>  read "tmp2.blif" </code2> 
 <code2>  strash</code2>
@@ -324,7 +324,7 @@ runs on Linux) is given.</li>
   <li>We measure the time consumed only when revsca is running  for proof-time averages
     and not Verilog processing times.</li>
 
-<li>For some multipliers (e.g., Merged_WT_SB4_KS_32x32), revsca2 claimed them to
+<li>For some multipliers (e.g., Merged_WT_SB4_KS_32x32_noX), revsca2 claimed them to
 be buggy, and printed:
 <code>
 "The multiplier is buggy! <br>
@@ -350,7 +350,7 @@ manner. </li>
   
 <li> Followed the same steps when running Revsca to create AIGs from Verilog:
 
-<code>yosys Merged_WT_SB4_KS_32x32_multgen.sv -p "hierarchy -top Merged_WT_SB4_KS_32x32" -p proc -p techmap -p flatten -o tmp2.blif</code>
+<code>yosys Merged_WT_SB4_KS_32x32_noX_multgen.sv -p "hierarchy -top Merged_WT_SB4_KS_32x32_noX" -p proc -p techmap -p flatten -o tmp2.blif</code>
 <code>abc </code>
 <code2>  read "tmp2.blif" </code2> 
 <code2>  strash</code2>
