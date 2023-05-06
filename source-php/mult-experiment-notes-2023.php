@@ -1,103 +1,42 @@
-<!doctype html> <html> 
-<title>Mertcan Temel - Multiplier experiment notes 2023
-    </title>
+<?php
+include 'head.php';
 
-<style>
+?>
 
- header {
-  padding: 15px 10px 15px 40px;
-  text-align: left;
-  background: #4CAF50;
-  color: white;
- font-size: 20px;
- border-bottom: 3px solid #333;
- }
+<script>
+  updatenav("publications");
+</script>
 
-  .content {
-  padding: 20px 20px 20px 20px;
-  text-align: left;
-  background: #fafafa;
-  color: black;
- font-size: 15px;
- border-left: 8px solid #4CAF50;
- border-right: 8px solid #4CAF50;
- border-top: 8px solid #4CAF50;
- border-bottom: 8px solid #4CAF50;
- }
 
-  nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  }
-
-  nav li {
-  float: left;
-  }
-
-  nav li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-  nav li a:hover:not(.active) {
-  background-color: #111;
-}
-
-  nav .active {
-  background-color: #4CAF50;
-  }
-
-  body {
   
-  background-color: #f0f0f0;
-
- }
-
-  code {
-  width: auto;
-  min-width: 500px;
-  text-align: left;
-  background-color: #F1F1F1;
-  display: block;
-  border: 0px solid gray;
-  margin: 5px 30px 5px 10px;
-  padding: 3px 10px 3px 10px;
+  
+<style>
+  
+  .artifact {
+  min-width: 530px;
+  max-width: 800px;
+  font-family:Menlo;
+  font-size:14px;
+  margin : 0 10px 0 0;
+  text-align: justify;
   }
-
-  .code2, code2 {
-      font-family: monospace;
-  width: auto;
-  min-width: 500px;
-  text-align: left;
-  margin: 5px 30px 5px 10px;
-  display: block;  
-  background-color: #F1F1F1;
-  border: 0px solid gray;
-  padding: 3px 10px 3px 10px;
-  white-space: pre-wrap;
- }
-
- li {
-     margin-top: 5px;  
-     margin-bottom: 5px;  
- }
-
-
+  
+ 
+  tab { margin-left: 40px; }
 </style>
 
+  <script>
+    document.getElementsByClassName("content")[0].style.backgroundColor = "white";
 
+    window.document.title = "Mertcan Temel - Artifact for Automated and Scalable Verification of Integer Multipliers";
+    </script>
 
-<body>
+  <div class="artifact">
 
-
-  
+   
 <h3> MULTIPLIER EXPERIMENT NOTES 2023</h3>
+
+I collected my notes about gathering benchmarks and running tools for multiplier verification.
 
 <h4> Gathering Benchmarks </h4>
 
@@ -338,3 +277,10 @@ manner. </li>
 <h4> Running AMulet1 </h4>
 
 Similar to amulet2. Details are to be added.
+
+
+</div>
+      
+<?php
+ include 'foot.php';
+ ?>

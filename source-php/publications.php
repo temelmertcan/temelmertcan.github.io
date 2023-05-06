@@ -84,6 +84,31 @@ We have developed an algorithm, S-C-Rewriting, that can automatically and very e
       
     </ul>
   </li>
+
+ <br>
+
+  <li>Mertcan Temel  "Automated, efficient, and sound verification of integer multipliers". University of Texas at Austin, 2021, Dissertation.
+    <br>
+    <ul>
+       <li><a href="javascript:showhide('abstractdiss')">Abstract</a>
+	<div id="abstractdiss" style="visibility:hidden;height:0px;">
+Formal verification of multiplier designs has been studied for decades. However, the practicality of the state-of-the-art tools has been limited because they do not scale for large designs or they only support certain types of design methodologies. We have developed a new and widely applicable algorithm, S-C-Rewriting, for efficient and automatic verification of signed and unsigned arithmetic modules with embedded multipliers. The architectures of our target designs include Wallace, Dadda, 4-to-2 compressor trees, and more with Booth encoding and various types of final stage adders. The output of these multipliers may be truncated, right-shifted, or a combination of both, and they may be implemented as part of a multiply-accumulate, dot-product, or other arithmetic units with control logic. Our method and tool are verified using the ACL2 theorem prover, and users can trust the soundness of our verification results. Our experiments have shown that our approach scales well in terms of time and memory. We can soundly confirm the correctness of 1024x1024-bit isolated multiplier and similarly large dot-product designs within a few minutes. Additionally, we can quickly generate counterexamples for flawed designs. Our tool and benchmarks are available online for public use.
+      </div></li>
+      
+      <li><a target="_blank" href="https://repositories.lib.utexas.edu/handle/2152/88056">Paper</a></li>
+    
+      <li><a href="javascript:showhide('bibtexdiss')">Bibtex</a>
+	<div id="bibtexdiss" style="visibility:hidden;height:0px;">
+@phdthesis{TemelDissertation,
+    title    = {Automated, Efficient, and Sound Verification of Integer Multipliers},
+    school   = {The University of Texas at Austin},
+    author   = {Temel, Mertcan},
+    year     = {2021}
+}
+      </div></li>
+      
+    </ul>
+  </li>
 </ul>
 
 
