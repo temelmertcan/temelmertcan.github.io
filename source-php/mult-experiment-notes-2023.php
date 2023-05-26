@@ -43,13 +43,12 @@ I collected my notes about gathering benchmarks and running tools for multiplier
 Here is the list of generators we used when generating the designs given in
 the paper:
 
-<ol>
-<li> All combinations  from multiplier generator from  Homma Labotory.  The
-benchmarks         used        to         be        generated         here:
-<a href="https://www.ecsis.riec.tohoku.ac.jp/views/amg-e">https://www.ecsis.riec.tohoku.ac.jp/views/amg-e</a>.
+<ol>  <li>  All  combinations  from multiplier  generator  from  Homma/AOKI
+Labotory.     The   benchmarks    used   to    be   obtained    here:   <a
+href="https://www.ecsis.riec.tohoku.ac.jp/views/amg-e">https://www.ecsis.riec.tohoku.ac.jp/views/amg-e</a>.
 However, it seems  this website is taken down now.   For 64x64, we gathered
-all the possible combinations when  running our experiments, which amounts to
-192 different design samples.</li>
+all the possible  combinations when running our  experiments, which amounts
+to 192 different design samples.</li>
 
 <li>A     small    set     of    benchmarks    are     generated    from
   <a href="https://github.com/amahzoon/genmul">https://github.com/amahzoon/genmul</a>. This
@@ -66,7 +65,7 @@ truncated and/or shifted multipliers.
 <p>  We  used   a  python  script  to  also  create   over  10000  randomly
 parameterized benchmarks  from this generator. These  include multiply-add,
 dot-product, truncation, shifting, and random  operand sizes. We used these
-to stress-test our tool.</p>
+to stress-test our tool. Other tools do not support these configurations.</p>
 
 <p>
 As an example, below are the commands to generate an example testbench:
@@ -86,66 +85,17 @@ encoding with Wallace tree and Kogge-Stone  adder. Name of the output file is
 <code>Merged_WT_SB4_KS_32x32_noX_multgen.sv</code>      with      top      module      name:
 <code>Merged_WT_SB4_KS_32x32_noX</code></p>
 
+<p> The  <tt>noX</tt> suffix indicate  that the  design is free  of Verilog
+don't-care (X)  values. Our tool  can handle these  cases but it  seems the
+yosys-abc route to generate the AIGs for  other tools do not support Xes in
+the design,  so the program outputs  a design that specifically  excludes X
+values. This is  a subtle hardware verification problem that  does not seem
+to be addressed frequently in publications. </p>
+
 </li>
 
 </ol>
 
-<h4> Running our tool (S-C-Rewriting)</h4>
-
-<ol>
-  <li>
-    Running our tool  requires ACL2 installation from the  master branch of
-its public repository, Our multiplier  rewriter library is included in this
-ACL2  distribution. <code>  git clone  https://github.com/acl2/acl2 </code>
-And                   follow                    the                   steps
-from <a href="https://www.cs.utexas.edu/users/moore/acl2/v8-5/HTML/installation/installation.html">
-here</a>.   You NEED  to get  ACL2 from  github master,  and not  a release
-model, unless you are reading this far  in the future (from April 2023). We
-used SBCL 2.2.9 to  build ACL2.  CCL works well too in  Intel Mac and Linux
-machines but tend to be slower than SBCL. There are some problems
-with SBCL's later versions (as of April 2023).  </li>
-
-  <li> To make sure ACL2 is built properly and books are certified, run the following:
-    <code> $ACL2DIR/books/build/cert.pl $ACL2DIR/books/projects/rp-rewriter/lib/mult3/demo/*.lisp -j 3</code> where $ACL2DIR points to your ACL2 installation directory (aka where you cloned it).
-  </li>
-
-  <li> Start ACL2 in the directory where the multiplier file is located: <code> $ACL2DIR/saved_acl2 </code> </li>
-
-  <li> Submit these events to parse the Verilog file (including books in a new ACL2 session may take around a minute):
-    <code> (include-book "projects/rp-rewriter/lib/mult3/parse-design" :dir :system) </code>
-    <code> (in-package "RP") ;; switch package/namespace </code>
-  </li>
-  <li> Parse the design and create svtv for it:
-    <code> (parse-and-create-svtv :file "Merged_WT_SB4_KS_32x32_noX_multgen.sv" :topmodule "Merged_WT_SB4_KS_32x32_noX") </code>
-  </li>
-
-  <li> State the correctness conjecture to verify:
-
-    <code2>(defthmrp-multiplier multiplier-correct
-  (implies (merged_wt_sb4_ks_32x32-autohyps)
-           (b* (((sv::assocs result) ;;  should correspond to output signal name
-                 (sv::svtv-run (merged_wt_sb4_ks_32x32)
-                               (merged_wt_sb4_ks_32x32-autoins))))
-             (equal result 
-                    (loghead 64 (* (logext 32 IN1) 
-                                   (logext 32 IN2))))))) </code2>
-    This event should finish quickly. 
-  </li>
-  
-</ol>
-
-Some notes:
-
-<ul>
-  <li> Any variables referred to in this conjecture should correspond to signal names in the original design (e.g., result, IN1, IN2).</li>
-  <li> We measure the time spent in this defthmrp-multiplier event. </li>
-  <li> Some heuristics may be disabled or enabled to make the proofs go faster. For example submitting below events before proofs can make the proofs go faster: <code> (enable-merge-fa-chains t) </code><code>(enable-aggressive-find-adders-in-svex nil)</code> Also, algebraic term rewriting limit may need to be increased for large Booth encodings --see the documentation <a href="https://www.cs.utexas.edu/users/moore/acl2/manuals/current/manual/?topic=RP____MULTIPLIER-VERIFICATION-HEURISTICS">page</a> for our modifiable heuristics</li> 
-  <li> logext means sign-extend, replacing that with loghead will make it zero-extend. </li>
-  <li> As we run experiments on thousands of different designs, we used python and ACL2 scripts to automate the process and collect the results.</li>
-  <li> Memory allocation goes up for very large multipliers (e.g., 1024x1024). This will likely require increasing allowed stack size and memory of ACL2. That usually means modifying the ACL2 executable ($ACL2DIR/saved_acl2). What the modifications should be depends on your system.</li>
-  <li> ACL2 images might be saved to disk to save time when including books. See the doc page <a href="https://www.cs.utexas.edu/users/moore/acl2/manuals/current/manual/index-seo.php/ACL2____SAVE-EXEC">here</a>. This will eradicate include book time if you end up restarting ACL2 a lot.
-    </li>
-</ul>
 
 <h4> Running RevSCA2</h4>
 
@@ -153,7 +103,7 @@ Some notes:
 
 <li> First  step is to  create AIGs from  Verilog designs. There  are various
 ways to do this. We used yosys and abc because they are easier to call from
-shell when running hundreds or thousands of experiments.
+shell when running hundreds or thousands of experiments. This was also the route that was suggested to us.
 
 <p> Below  are  the commands we used  to  parse  combinational Verilog  designs  and
    convert them to AIGs:</p>
@@ -192,10 +142,10 @@ be buggy, and printed:
 "The multiplier is buggy! <br>
 Remainder:[1;37m-92233...."</code>
 
-<p>This is a  false-negative as we can prove this  multiplier to be correct
-using our provably correct tool.   For other similar configurations, revsca
-said some of them to be correct and some to be buggy, where all of them are
-actually proved to be correct.</p>
+<p>This seems to be a false-negative as Amulet and VeSCmul could prove this
+multiplier correct.  For other similar  configurations, revsca said some of
+them to  be correct and some  to be buggy,  where all of them  are actually
+proved to be correct.</p>
 
 </li>
 
@@ -221,7 +171,7 @@ manner. </li>
   <p>These commands will create an AIG file named origdesign.aig.</p>
   </li>
 
-<li> We pull AMulet2 from <a href="https://github.com/d-kfmnn/amulet2">https://github.com/d-kfmnn/amulet2</a>.</li>
+<li> Pull AMulet2 from <a target=_blank href="https://github.com/d-kfmnn/amulet2">https://github.com/d-kfmnn/amulet2</a>.</li>
 
 
 <li>Amulet2 requires other tools to be installed for the complete verification flow. These are:
@@ -253,15 +203,14 @@ manner. </li>
   <li>We  measured  the  total  time  from  these  events  excluding  Verilog
     processing times.</li>
   
-  <li> Amulet2 sometimes  returned 1, which usually indicate an  error in a
-    program,  but  apparently  this  program  does  not  actually  mean  an
-    error. For example, in the substitute  stage, it looks like returning 0
-    vs 1 is to indicate that the program made a change in the AIG.</li>
+  <li> Amulet2  sometimes returned  1, which usually  indicate an  error in
+    unix, but apparently this program does  not actually mean an error. For
+    example, in the substitute stage, it looks  like returning 0 vs 1 is to
+    indicate that the program made a change in the AIG.</li>
   
   <li> Certificates seem  to occupy a large  space in disk. I  did not save
     the exact  numbers but as multipliers  grow, I was running  out of disk
-    space  (allocated 200GB).  So I  ended  up having  to skip  certificate
-    generation and just verify without any check.</li>
+    space  (allocated 200GB). </li>
   
   <li>Some  problem in  Amulet2  seems to  be causing  timeout  in a  large
     majority of the benchmarks I tried. It looks like amulet2 is working ok
@@ -276,7 +225,7 @@ manner. </li>
 
 <h4> Running AMulet1 </h4>
 
-Similar to amulet2. Details are to be added.
+Very similar to the commands for amulet2. Details are to be added.
 
 
 </div>
