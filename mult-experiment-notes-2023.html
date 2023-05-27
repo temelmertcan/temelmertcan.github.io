@@ -200,7 +200,7 @@ all sizes  up to  256x256-bit multipliers.   This generator  supports Booth
 radix-2/4/8/16.  This generator also creates dot-product, multiply-add, and
 truncated and/or shifted multipliers.
 
-<p>  We  used   a  python  script  to  also  create   over  10000  randomly
+<p>  I  used   a  python  script  to  also  create   over  10000  randomly
 parameterized benchmarks  from this generator. These  include multiply-add,
 dot-product, truncation, shifting, and random  operand sizes. We used these
 to stress-test our tool. Other tools do not support these configurations.</p>
@@ -224,24 +224,34 @@ encoding with Wallace tree and Kogge-Stone  adder. Name of the output file is
 <code>Merged_WT_SB4_KS_32x32_noX</code></p>
 
 <p> The  <tt>noX</tt> suffix indicate  that the  design is free  of Verilog
-don't-care (X)  values. Our tool  can handle these  cases but it  seems the
-yosys-abc route to generate the AIGs for  other tools do not support Xes in
-the design,  so the program outputs  a design that specifically  excludes X
-values. This is  a subtle hardware verification problem that  does not seem
-to be addressed frequently in publications. </p>
+don't-care (X)  values. VeSCmul  can handle  these cases  but it  seems the
+yosys/abc route to generate the AIGs for  other tools do not support Xes in
+the  design, so  this  generator  is instructed  to  output  a design  that
+specifically  excludes X  values. This  is a  subtle hardware  verification
+problem that does not seem to be addressed frequently in publications. </p>
 
 </li>
 
 </ol>
 
+<h4> Running VeSCmul </h4>
+
+<p>  Thousands  of experiments  are  run  for VeSCmul,  including  randomly
+genererated     designs.     These     are    packaged     into    a     <a
+href="mult-experiments.html">zip  file</a> for  others  to  run easily.   A
+makefile  and some  python scripts  create random  designs, run  the proofs
+automatically, and  collect them into a  single text file. Only  thing that
+users  need  to  do  is  build  ACL2,  which  should  be  a  more  or  less
+straightforward process. </p>
 
 <h4> Running RevSCA2</h4>
 
 <ol>
 
-<li> First  step is to  create AIGs from  Verilog designs. There  are various
-ways to do this. We used yosys and abc because they are easier to call from
-shell when running hundreds or thousands of experiments. This was also the route that was suggested to us.
+<li> First step  is to create AIGs from Verilog  designs. There are various
+ways to do this. I used yosys and  abc because they are easier to call from
+shell when running  hundreds or thousands of  experiments. Apparently, this
+is what the owners of RevSCA and Amulet also use.
 
 <p> Below  are  the commands we used  to  parse  combinational Verilog  designs  and
    convert them to AIGs:</p>
@@ -256,12 +266,12 @@ shell when running hundreds or thousands of experiments. This was also the route
   </li>
 
 
-<li>       We       pull      revsca      from      this       git      repo:
+<li>       I       pulled      revsca      from      this       git      repo:
 <a href="https://github.com/amahzoon/RevSCA-2.0">https://github.com/amahzoon/RevSCA-2.0</a>. It
 appears that the source code is  not available and only an executable (that
 runs on Linux) is given.</li>
 
-<li>Then we run revsca2 as follows:</li>
+<li>Then revsca2 can be run as follows:</li>
 
 <code>./revsca2 origdesign.aig revsca.out -s</code>
 
@@ -271,7 +281,7 @@ runs on Linux) is given.</li>
 
 <ul>
 
-  <li>We measure the time consumed only when revsca is running  for proof-time averages
+  <li>I measured the time consumed only when revsca is running  for proof-time averages
     and not Verilog processing times.</li>
 
 <li>For some multipliers (e.g., Merged_WT_SB4_KS_32x32_noX), revsca2 claimed them to
@@ -338,7 +348,7 @@ manner. </li>
 
 <ul>
 
-  <li>We  measured  the  total  time  from  these  events  excluding  Verilog
+  <li>I measured  the  total  time  from  these  events  excluding  Verilog
     processing times.</li>
   
   <li> Amulet2  sometimes returned  1, which usually  indicate an  error in
@@ -352,18 +362,18 @@ manner. </li>
   
   <li>Some  problem in  Amulet2  seems to  be causing  timeout  in a  large
     majority of the benchmarks I tried. It looks like amulet2 is working ok
-    for Homma designs  (#1 multiplier generator above) but  not others. The
-    proofs  were  running  for  a  very  long  time  even  for  simple  8x8
-    multipliers. This is  observed in April 2023. I  notified the owner
-    of the amulet2 repo  of the problem. Because of this,  I ended up using
-    Amulet1 when I collected proof-time results.</li>
+    for Homma  designs (#1 multiplier  generator above) but not  others (at
+    least #3)  . The  proofs were  running for  a very  long time  even for
+    simple 8x8 multipliers. This is observed  in April 2023. I notified the
+    owner of the amulet2  repo of the problem. Because of  this, I ended up
+    using Amulet1 when I collected proof-time results.</li>
 
 </ul>
 
 
 <h4> Running AMulet1 </h4>
 
-Very similar to the commands for amulet2. Details are to be added.
+Very similar to the commands for amulet2. Details may be added later. 
 
 
 </div>
