@@ -18,6 +18,7 @@
   text-align: left;
   background: #fafafa;
   color: black;
+     
  font-size: 15px;
  border-left: 8px solid #4CAF50;
  border-right: 8px solid #4CAF50;
@@ -68,6 +69,7 @@
   border: 1px solid gray;
   margin: 0px 30px 3px 10px;
   padding: 3px 10px 3px 10px;
+      
   }
 
  .code2, code2 {
@@ -80,6 +82,7 @@
   border: 1px solid gray;
   padding: 3px 10px 3px 10px;
   white-space: pre-wrap;
+      max-width: 1200px;
   }
 
 
@@ -153,6 +156,57 @@ function showhide(id)
   
 </script>
 
+    <h3> 2024 </h3>
+
+<ul>
+
+    <li>Mertcan Temel "VeSCMul: Verified Implementation of S-C-Rewriting for Multiplier Verification". Proceedings of the 2024 International Conference on Tools and Algorithms for the Construction and Analysis of Systems (TACAS 2024) <i>(to appear)</i>
+    <br>
+    <ul>
+       <li><a href="javascript:showhide('abstract2024tacas')">Abstract</a>
+	<div id="abstract2024tacas" style="visibility:hidden;height:0px;">
+Formal verification of multipliers is difficult.  This paper presents a custom tool, VeSCMul, designed to address this problem.  VeSCMul can be effectively applied to a wide range of hardware verification challenges, including multipliers with saturation, flags, shifting, truncation, accumulation, dot product, and even floating-point multiplication.  The tool is highly automated with a user-friendly interface, and it is very efficient; for instance, verification for designs with 64-bit operands can finish in seconds.  Notably, VeSCMul has been successfully utilized for both commercial designs and publicly available benchmarks.  Regarding the reliability of its results, VeSCMul itself is fully verified, instilling confidence in its users for soundness.  It also has the option to be used with a SAT solver for completeness and counterexample generation.  Readers of this paper will gain insights into the capabilities and limitations of VeSCMul, as well as how to employ it for the verification of their own designs.  
+      </div></li>
+      <li><a target="_blank" href="http://temelmertcan.github.io/pdfs/tacas24-vescmul-preprint-paper.pdf">Paper (preprint)</a></li>
+       
+      <li><a href="javascript:showhide('bibtexacl224t')">Bibtex</a>
+	<div id="bibtexacl224t" style="visibility:hidden;height:0px;">
+@InProceedings{Temeltacas24,
+    author="Temel, Mertcan",
+    title =	 {{VeSCMul}: Verified Implementation of {S-C-Rewriting} for
+                    Multiplier Verification},
+    booktitle={International Conference on Tools and Algorithms for
+                    the Construction and Analysis of Systems , {TACAS}
+                    2024 (to appear)},
+}
+      </div></li>
+    </ul>
+  </li>
+
+    
+          <li>Mertcan Temel "Formal Verification of Booth Radix-8 and Radix-16 Multipliers". Proceedings of the 2024 Design, Automation & Test in Europe Conference & Exhibition (DATE 2024) <i>(to appear)</i>
+    <br>
+    <ul>
+       <li><a href="javascript:showhide('abstract2024date')">Abstract</a>
+	<div id="abstract2024date" style="visibility:hidden;height:0px;">
+In processors where low power consumption is essential, higher Booth encodings such as radix-8 and radix-16 may be preferred over the more common radix-4 encoding.  With higher radix multipliers included in commercial hardware, formal verification of such designs poses a real challenge.  Verifying multipliers is difficult in general; state-of-the-art verification methods like S-C-Rewriting and computer algebra have primarily addressed the multiplier verification problem for lower Booth radices such as radix-4.  However, these methods do not scale well for higher radices.  This paper explores the cause of this limitation and proposes a list of solutions for automatic, sound, and fast verification of such designs.  These solutions include three improvements for the S-C-Rewriting method, some of which may be applicable to computer algebra methods as well.  Experiments have shown that higher Booth radix multipliers can now be verified soundly, fully automatically, and in a matter of seconds for common operand sizes such as 64 and 128 bits.
+</div></li>
+      <li><a target="_blank" href="http://temelmertcan.github.io/pdfs/radix16-paper.pdf">Paper (preprint)</a></li>
+      <li><a target="_blank" href="https://temelmertcan.github.io/pdfs/radix-16%20DATE%20long%20presentation.pdf">Slides</a></li>
+      <li><a href="javascript:showhide('bibtexacl224d')">Bibtex</a>
+	<div id="bibtexacl224d" style="visibility:hidden;height:0px;">
+@inproceedings{temelDATE2024,
+ 	year = 2024,
+ 	author = {Mertcan Temel},
+ 	title = {{Formal Verification of Booth Radix-8 and Radix-16 Multipliers}},
+ 	booktitle = {Design, Automation {\&} Test in Europe Conference {\&} Exhibition ({DATE}) (to appear)}
+ }
+      </div></li>
+    </ul>
+  </li>
+</ul>
+
+    
 <h3> 2022 </h3>
 
 <ul>

@@ -18,6 +18,7 @@
   text-align: left;
   background: #fafafa;
   color: black;
+     
  font-size: 15px;
  border-left: 8px solid #4CAF50;
  border-right: 8px solid #4CAF50;
@@ -68,6 +69,7 @@
   border: 1px solid gray;
   margin: 0px 30px 3px 10px;
   padding: 3px 10px 3px 10px;
+      
   }
 
  .code2, code2 {
@@ -80,6 +82,7 @@
   border: 1px solid gray;
   padding: 3px 10px 3px 10px;
   white-space: pre-wrap;
+      max-width: 1200px;
   }
 
 
@@ -105,10 +108,10 @@
 
 
 <ul>
-  <li><a id="home" class="" href="index.php">Home</a></li>
-  <li><a id="publications" class="" href="publications.php">Publications</a></li>
-  <!-- <li><a id="cv" href="cv.php" class="">CV</a></li> -->
-  <li><a id="contant" href="contact.php" class="">Contact</a></li>
+  <li><a id="home" class="" href="index.html">Home</a></li>
+  <li><a id="publications" class="" href="publications.html">Publications</a></li>
+  <!-- <li><a id="cv" href="cv.html" class="">CV</a></li> -->
+  <li><a id="contant" href="contact.html" class="">Contact</a></li>
 </ul>
 
 </nav>
